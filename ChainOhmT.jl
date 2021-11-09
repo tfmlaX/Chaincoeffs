@@ -51,7 +51,6 @@ astr=string(a)
 sstr=string(s)
 bstr=string(beta)
 
-fid = h5open("./ohmic_hard_beta.h5", "cw") # Create and write preserving previous content
 # the "path" to the data inside of the h5 file is beta -> alpha -> s -> data (e, t or c)
 
 # Write onsite energies
@@ -61,6 +60,5 @@ h5write("./ohmic_hard_beta.h5", string("/",bstr,"/",astr,"/",sstr,"/t"), jacerg[
 # Write coupling coefficient
 h5write("./ohmic_hard_beta.h5", string("/",bstr,"/",astr,"/",sstr,"/c"), jacerg[N,2])
 
-close(fid)
 
 end
