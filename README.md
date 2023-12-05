@@ -1,7 +1,7 @@
 # Chaincoeffs
 Julia code to generate finite temperature chain coefficients (on-site energy, hopping energy and coupling constant) of a chain-mapped bosonic environment [1,2].
 
-Parts of this code is a translation in Julia from a previous Matlab code [3,4].
+Part of this code is a translation in Julia from a previous Matlab code [3,4].
 
 [1]Chin, A.W. et al. (2010) ‘Exact mapping between system-reservoir quantum models and semi-infinite discrete chains using orthogonal polynomials’, Journal of Mathematical Physics, 51(9), p. 092109. doi:https://doi.org/10.1063/1.3490188.
 
