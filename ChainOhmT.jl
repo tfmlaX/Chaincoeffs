@@ -1,22 +1,19 @@
 module Chaincoeffs
-using HDF5
+using CSV
 using Tables
 include("quadohmT.jl")
 include("mcdis2.jl")
 
-#Ohmic spectral density with hard cut-off
+"""
+Code translated in Julia by Thibaut Lacroix in 10/2020 from a previous Matlab code
+"""
 
-#irout = 1 => stieltjes
-#irout = 2 => lanczos
-
-global mc, mp, iq, idelta, irout, AB, a, s, beta
-
+export mc, mp, iq, idelta, irout, AB, a, wc, beta, DM, uv
 ## Spectral density parameters
 a = 0.03
 wc = 1
-beta = 2
+beta = 1
 xc = wc
-s = 1
 
 ## discretisation parameters
 mc=4 # the number of component intervals
@@ -33,10 +30,9 @@ jacerg = zeros(N,2)
 
 ab = 0.
 ab, Mcap, kount, suc, uv = mcdis(N,eps0,quadfinT,Mmax)
-
 for m = 1:N-1
-    jacerg[m,1] = wc.*ab[m,1] #site energy
-    jacerg[m,2] = wc.*sqrt(ab[m+1,2]) #hopping parameter
+    jacerg[m,1] = ab[m,1] #site energy
+    jacerg[m,2] = sqrt(ab[m+1,2]) #hopping parameter
 end
 jacerg[N,1] = ab[N,1]
 
@@ -45,20 +41,8 @@ for i = 1:mc
     xw = quadfinT(Mcap,i,uv)
     global eta += sum(xw[:,2])
 end
-jacerg[N,2] = wc.*sqrt(eta/pi) #coupling coeficient
-
-astr=string(a)
-sstr=string(s)
-bstr=string(beta)
-
-# the "path" to the data inside of the h5 file is beta -> alpha -> s -> data (e, t or c)
-
-# Write onsite energies
-h5write("./ohmic_hard_beta.h5", string("/",bstr,"/",astr,"/",sstr,"/e"), jacerg[1:N,1])
-# Write hopping energies
-h5write("./ohmic_hard_beta.h5", string("/",bstr,"/",astr,"/",sstr,"/t"), jacerg[1:N-1,2])
-# Write coupling coefficient
-h5write("./ohmic_hard_beta.h5", string("/",bstr,"/",astr,"/",sstr,"/c"), jacerg[N,2])
-
+jacerg[N,2] = sqrt(eta/pi)
+header = Vector([Symbol("α_n"), Symbol("β_n and η")])
+CSV.write("chaincoeffs_ohmic_a$(a)wc$(wc)xc$(xc)beta$(beta).csv", Tables.table(jacerg, header=header))
 
 end
