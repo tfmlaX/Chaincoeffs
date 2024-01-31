@@ -1,4 +1,6 @@
 # Chaincoeffs
+[![license](https://img.shields.io/badge/License-GPL_3.0-orange.svg)](https://github.com/tfmlaX/Chaincoeffs/blob/master/LICENSE) [![Integrated](https://img.shields.io/badge/Integrated_in-MPSDynamics.jl-purple.svg)](https://github.com/angusdunnett/MPSDynamics/)
+
 Julia code to generate finite temperature chain coefficients (on-site energy, hopping energy and coupling constant) of a chain-mapped bosonic environment [1,2].
 
 Part of this code is a translation in Julia from a previous Matlab code [3,4].
