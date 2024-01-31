@@ -7,6 +7,10 @@ Part of this code is a translation in Julia from a previous Matlab code [3,4].
 
 These routines have been integrated in the [MPSDynamics.jl](https://github.com/angusdunnett/MPSDynamics/) package.
 
+# Publications
+Chaincoeffs is cited in the following publications:
+- A. Riva, D. Tamascelli, A. J. Dunnett, A. W. Chin, *Thermal cycle and polaron formation in structured bosonic environments*, [Phys. Rev. B 108(19):195138](https://doi.org/10.1103/PhysRevB.108.195138), November 2023
+
 # References
 [1] Chin, A.W. et al. (2010) ‘Exact mapping between system-reservoir quantum models and semi-infinite discrete chains using orthogonal polynomials’, Journal of Mathematical Physics, 51(9), p. 092109. doi:https://doi.org/10.1063/1.3490188.
 
